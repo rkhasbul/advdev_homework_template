@@ -90,6 +90,7 @@ podTemplate(
             }
           }
         }
+      }
 
       // Deploy the built image to the Development Environment.
       stage('Deploy to Dev') {
@@ -184,11 +185,13 @@ podTemplate(
         }
       }
     }
-  }
+  }  
+}
 
-  def getVersionFromPom(pom) {
-    def matcher = readFile(pom) =~ '<version>(.+)</version>'
-    matcher ? matcher[0][1] : null
-  }
-  
+// Convenience Functions to read version from the pom.xml
+// Do not change anything below this line.
+// --------------------------------------------------------
+def getVersionFromPom(pom) {
+  def matcher = readFile(pom) =~ '<version>(.+)</version>'
+  matcher ? matcher[0][1] : null
 }
